@@ -5,10 +5,9 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar">
-         
-          <li className=""><a href>Clicky Game</a></li>
-          <li className="">Click an image to begin!</li>
-          <li className="">Score:    {this.props.score} | Top Score: {this.props.score}</li>
+         <a class="navbar-brand scale-in-center"> <i class="fas fa-snowboarding rotate-center"></i></a>
+          <li className=""><a href="">Snowhub</a></li>
+          <li className="">Upload    {this.props.upload}  Sign Out {this.props.login}</li>
       </nav>
     );
   }
