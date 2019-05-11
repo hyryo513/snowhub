@@ -6,8 +6,8 @@ class Navbar extends Component {
     return (
       <nav className="navbar">
          <a class="navbar-brand scale-in-center"> <i class="fas fa-snowboarding rotate-center"></i></a>
-          <li className=""><a href="">Snowhub</a></li>
-          <li className="">Upload    {this.props.upload}  Sign Out {this.props.login}</li>
+          <li className=""><a href="/home">Snowhub</a></li>
+          <li className="">Upload    {this.props.upload}  <a href="/login">Sign Out</a></li>
       </nav>
     );
   }
