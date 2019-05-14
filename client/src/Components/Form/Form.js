@@ -35,18 +35,17 @@ state = {
         id="radio1" />
       <MDBInput onClick={this.onClick(2)} checked={this.state.radio===2 ? true : false} label="Normal User" type="radio"
         id="radio1" />
-                    </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
-
-<GoogleLogin
+        <GoogleLogin
         clientId="306631194753-3h405u0u64t43f1vd6dh5udkt0b85cb2.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
         buttonText="LOGIN WITH GOOGLE"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
       />
+                    </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+      </MDBRow>
+    </MDBContainer>
         </Form>);
     }
 }
