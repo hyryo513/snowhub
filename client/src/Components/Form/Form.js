@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import GoogleLogin from 'react-google-login';
 import { MDBInput, MDBContainer, MDBRow, MDBCol,MDBCardHeader, MDBCardBody,MDBCard, MDBIcon } from 'mdbreact';
 import "./Form.css";
@@ -28,7 +28,7 @@ state = {
             <MDBCardBody>
               <MDBCardHeader className="form-header deep-blue-gradient rounded">
                 <h3 className="my-3">
-                  <MDBIcon icon="lock" /> Select your User type
+                  <MDBIcon icon="lock" /> Select User type
                 </h3>
               </MDBCardHeader>
       <MDBInput onClick={this.onClick(1)} checked={this.state.radio===1 ? true : false} label="Instructor" type="radio"
