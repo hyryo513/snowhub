@@ -1,5 +1,5 @@
 {
-  "homepage" : "http://localhost:3000",
+  "homepage": "http://localhost:3000",
   "name": "snowhub",
   "version": "1.0.0",
   "private": true,

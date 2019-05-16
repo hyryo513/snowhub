@@ -1,14 +1,18 @@
 import React, {Component} from "react";
-import { Jumbotron } from "react-bootstrap";
+import { MDBJumbotron, MDBBtn, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import LogIn from "../Modal/Modal";
 import "./Header.css";
 
 const Header = () => (
-	<Jumbotron className = "header">
-		<h1>Welcome to Snowhub!</h1>
-<LogIn className="btn-primary">
 
-</LogIn>
-	</Jumbotron>
+	<MDBRow>
+	  <MDBCol>
+	<MDBJumbotron className = "header">
+		<h1>Welcome to Snowhub!</h1>
+	
+	</MDBJumbotron>
+	</MDBCol>
+      </MDBRow>
+  
 );
 export default Header;
