@@ -7,7 +7,7 @@ const Header = () => (
 
 	<MDBRow>
 	  <MDBCol>
-	<MDBJumbotron className = "header">
+	<MDBJumbotron fluid>
 		<h1>Welcome to Snowhub!</h1>
 	
 	</MDBJumbotron>

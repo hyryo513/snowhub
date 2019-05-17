@@ -6,24 +6,14 @@ class Upload extends Component {
     return (
   
        <Jumbotron className="uploader">
-      <div className="input-group">
-  <div className="input-group-prepend">
-    <span className="input-group-text" id="inputGroupFileAddon01">
-      Upload
-    </span>
-  </div>
-  <div className="custom-file">
-    <input
-      type="file"
-      className="custom-file-input"
-      id="inputGroupFile01"
-      aria-describedby="inputGroupFileAddon01"
-    />
-    <label className="custom-file-label" htmlFor="inputGroupFile01">
-      insert your url 
-    </label>
-  </div>
-</div>
+        <div className="input-group">
+      <div className="input-group-prepend">
+      </div>
+      <input type="text" className="form-control" placeholder="Insert your url" aria-label="Username" aria-describedby="basic-addon" />
+      <button className="input-group-text" id="basic-addon">
+      <i className="fa fa-plus-circle"></i>
+      </button> 
+    </div>
        </Jumbotron>
     );
   }

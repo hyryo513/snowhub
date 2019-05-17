@@ -73,7 +73,6 @@ class LogIn extends Component {
         <MDBContainer>
           <MDBBtn  outline color="white" className="mb-5" onClick={this.toggle(14)}>Sign In</MDBBtn>
           <MDBModal isOpen={this.state.modal14} toggle={this.toggle(14)} centered>
-            <MDBModalHeader toggle={this.toggle(14)}>MDBModal title</MDBModalHeader>
             <MDBModalBody>
                     <Email/>
             </MDBModalBody>

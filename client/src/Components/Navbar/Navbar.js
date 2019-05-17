@@ -5,7 +5,6 @@ import "./Navbar.css";
 import { Navbar, Nav } from "react-bootstrap";
 import App from "../../App";
 import Upload from "../../pages/Upload";
-import Login from '../../pages/Login';
 class NavbarPage extends Component {
   render() {
     return (
