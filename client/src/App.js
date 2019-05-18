@@ -110,6 +110,7 @@ class App extends Component {
                   buttonText="LOGIN WITH GOOGLE"
                   onSuccess={this.responseGoogle}
                   onFailure={this.responseGoogle}
+                  scope="profile email https://www.googleapis.com/auth/youtube.readonly"
                 />
               </Form>
             </Modal.Body>

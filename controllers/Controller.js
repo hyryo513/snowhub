@@ -1,6 +1,8 @@
 const db = require("../models");
 require("dotenv").config();
 const axios = require("axios");
+var {google} = require('googleapis');
+var service = google.youtube('v3');
 
 var {OAuth2Client} = require("google-auth-library");
 var client = new OAuth2Client(
@@ -20,13 +22,31 @@ async function verify(req, res) {
       // Or, if multiple clients access the backend:
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
   });
+  client.setCredentials(req.body.idToken);
   const payload = ticket.getPayload();
   userid = payload["sub"];
   userName = payload["name"];
   // If request specified a G Suite domain:
   //const domain = payload['hd'];
   createUser(req, res);
-  res.send(true);
+  service.search.list({
+    auth: client,
+    part: 'snippet',
+    forMine: true,
+    type: "video"
+  }, function(err, response) {
+    if (err) {
+      console.log('The API returned an error: ' + err);
+      return;
+    }
+    var videos = response.data.items;
+    if (videos.length == 0) {
+      console.log('No channel found.');
+    } else {
+      console.log(videos);
+    }
+    res.send(true);
+  });
 }
 
 createUser = (req, res) => {
