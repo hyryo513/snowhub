@@ -18,9 +18,12 @@ h1{
 	font-size: 9vw;
     font-weight: bold;
     position: center;
-    color: gray;
+	color:#fff;
+	text-transform: uppercase;
+	text-shadow: 0 5px 10px rgba(0,0,0,1);
+	mix-blend-mode: overlay;
 	font-family: 'Roboto',sans-serif;
-	padding: 50px 0 20px 0; 
+	padding: 50px 0 20px 0px; 
 }
 
 h2{
@@ -29,6 +32,8 @@ h2{
 	padding-bottom: 40px;
 }
 .btn{
-    background: #3D7EAA;
-    align-content: center;
+	background:skyblue;
+	border: #fff;
+	align-content: center;
+	margin-bottom: 3rem;
 }

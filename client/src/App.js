@@ -1,18 +1,19 @@
-import React, {Component} from "react";
-import {Modal, Button, ButtonToolbar, Form, Jumbotron} from "react-bootstrap";
+import React, { Component } from "react";
+import { Modal, Button, ButtonToolbar, Form, Jumbotron } from "react-bootstrap";
 import GoogleLogin from 'react-google-login';
-import { MDBInput, MDBContainer, MDBRow, MDBCol,MDBCardHeader, MDBCardBody,MDBCard, MDBIcon } from 'mdbreact';
-import Header from "./Components/Header/Header"
+import { MDBInput, MDBContainer, MDBRow, MDBCol, MDBCardHeader, MDBCardBody, MDBCard, MDBIcon } from 'mdbreact';
+import Header from "./Components/Header/Header";
+import Upload from "./Components/Uploadpage/Upload";
 import axios from "axios";
 class App extends Component {
-  state ={
+  state = {
     signIn: false,
     role: "Normal User",
     modalShow: false,
     signInShow: true,
     radio: 1
   }
-  
+
   radioOnClick = (nr) => {
     let selectedRole = nr === 1 ? "Normal User" : "Instructor";
     this.setState({
@@ -34,9 +35,9 @@ class App extends Component {
     let idToken = response.tokenObj.id_token;
 
     axios.post("/api/tokensignin", {
-        idToken: idToken,
-        role: this.state.role
-      })
+      idToken: idToken,
+      role: this.state.role
+    })
       .then(
         (res) => {
           if (res) {
@@ -55,30 +56,31 @@ class App extends Component {
           }
         }
       )
-      .catch(error => {console.log(error)})
+      .catch(error => { console.log(error) })
   }
 
   render() {
-    const displaySignIn = this.state.signInShow ? {} : {display: "none"};
-    const displayUpload = this.state.signIn && (this.state.role === "Normal User") ? {} : {display: "none"};
+    const displaySignIn = this.state.signInShow ? {} : { display: "none" };
+    const displayUpload = this.state.signIn && (this.state.role === "Normal User") ? {} : { display: "none" };
     return (
       <div>
         <Header/>
         <ButtonToolbar>
-            <Button
-            color="light-blue"
+          <Button
+            color="white"
             onClick={this.signInClick}
             style={displaySignIn}
-            >
-              Sign In
+          >
+            Sign In
             </Button>
-            <Modal
+            
+          <Modal
             show={this.state.modalShow}
             onHide={this.signInClick}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            >
+          >
             <Modal.Header closeButton>
               <Modal.Title id="contained-modal-title-vcenter">
               </Modal.Title>
@@ -92,39 +94,32 @@ class App extends Component {
                         <MDBCardBody>
                           <MDBCardHeader className="form-header deep-blue-gradient rounded">
                             <h3 className="my-3">
-                              <MDBIcon icon="lock" /> Select your User type
+                              <MDBIcon icon="lock" /> Select User type
                             </h3>
                           </MDBCardHeader>
-                          <MDBInput onClick={() => this.radioOnClick(1)} checked={this.state.radio===1 ? true : false} label="Normal User" type="radio"
+                          <MDBInput onClick={() => this.radioOnClick(1)} checked={this.state.radio === 1 ? true : false} label="Normal User" type="radio"
                             id="radio1" />
-                          <MDBInput onClick={() => this.radioOnClick(2)} checked={this.state.radio===2 ? true : false} label="Instructor" type="radio"
+                          <MDBInput onClick={() => this.radioOnClick(2)} checked={this.state.radio === 2 ? true : false} label="Instructor" type="radio"
                             id="radio1" />
+                          <GoogleLogin
+                            clientId="306631194753-3h405u0u64t43f1vd6dh5udkt0b85cb2.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+                            buttonText="LOGIN WITH GOOGLE"
+                            onSuccess={this.responseGoogle}
+                            onFailure={this.responseGoogle}
+                          />
                         </MDBCardBody>
                       </MDBCard>
                     </MDBCol>
                   </MDBRow>
                 </MDBContainer>
-                <GoogleLogin
-                  clientId="306631194753-3h405u0u64t43f1vd6dh5udkt0b85cb2.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
-                  buttonText="LOGIN WITH GOOGLE"
-                  onSuccess={this.responseGoogle}
-                  onFailure={this.responseGoogle}
-                />
               </Form>
             </Modal.Body>
             <Modal.Footer>
             </Modal.Footer>
-            </Modal>
+          </Modal>
         </ButtonToolbar>
-        <Jumbotron className="uploader" style={displayUpload}>
-          <div className="input-group">
-            <div className="input-group-prepend"></div>
-            <input type="text" className="form-control" placeholder="Insert your url" aria-label="Username" aria-describedby="basic-addon" />
-            <button className="input-group-text" id="basic-addon">
-              <i className="fa fa-plus-circle"></i>
-            </button> 
-          </div>
-       </Jumbotron>
+        <Upload style={displayUpload}>
+        </Upload>
       </div>
     );
   }
