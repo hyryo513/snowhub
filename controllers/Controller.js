@@ -20,7 +20,6 @@ async function verify(req, res) {
       // Or, if multiple clients access the backend:
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
   });
-  oAuthToken = req.body.idToken;
   const payload = ticket.getPayload();
   userid = payload["sub"];
   userName = payload["name"];

@@ -31,8 +31,9 @@ class App extends Component {
   }
 
   responseGoogle = (response) => {
-    let idToken = response.tokenId;
-
+   
+    var idToken = response.tokenId;
+    console.log(idToken);
     axios.post("/api/tokensignin", {
         idToken: idToken,
         role: this.state.role
