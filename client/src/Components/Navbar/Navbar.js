@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { Route, NavLink, BrowserRouter as Router, Switch } from 'react-router-dom'
 import "./Navbar.css";
 import { Navbar, Nav } from "react-bootstrap";
 import App from "../../App";
