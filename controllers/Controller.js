@@ -9,11 +9,11 @@ var client = new OAuth2Client(
 var clientId = process.env.googleClientId;
 var userid;
 var userName;
-var oAuthToken;
 
 
 async function verify(req, res) {
-  //console.log(req.query.idToken);
+  console.log(req.body.idToken);
+  console.log(req.body.role)
   const ticket = await client.verifyIdToken({
       idToken: req.body.idToken,
       audience: clientId,  // Specify the CLIENT_ID of the app that accesses the backend
@@ -27,6 +27,7 @@ async function verify(req, res) {
   // If request specified a G Suite domain:
   //const domain = payload['hd'];
   createUser(req, res);
+  res.send(true);
 }
 
 createUser = (req, res) => {
@@ -44,8 +45,7 @@ createUser = (req, res) => {
           dbModel = updatedDbModel
         })
         .catch(err => console.log(err))
-    }
-    res.json(dbModel);
+    }    
   })
   .catch(err => res.status(422).json(err));
 }
