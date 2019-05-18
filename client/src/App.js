@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Modal, Button, ButtonToolbar, Form } from "react-bootstrap";
+import {Modal, Button, ButtonToolbar, Form, Jumbotron} from "react-bootstrap";
 import GoogleLogin from 'react-google-login';
 import { MDBInput, MDBContainer, MDBRow, MDBCol,MDBCardHeader, MDBCardBody,MDBCard, MDBIcon } from 'mdbreact';
 import Header from "./Components/Header/Header"
@@ -60,7 +60,7 @@ class App extends Component {
 
   render() {
     const displaySignIn = this.state.signInShow ? {} : {display: "none"};
-    
+    const displayUpload = this.state.signIn && (this.state.role === "Normal User") ? {} : {display: "none"};
     return (
       <div>
         <Header/>
@@ -116,6 +116,15 @@ class App extends Component {
             </Modal.Footer>
             </Modal>
         </ButtonToolbar>
+        <Jumbotron className="uploader" style={displayUpload}>
+          <div className="input-group">
+            <div className="input-group-prepend"></div>
+            <input type="text" className="form-control" placeholder="Insert your url" aria-label="Username" aria-describedby="basic-addon" />
+            <button className="input-group-text" id="basic-addon">
+              <i className="fa fa-plus-circle"></i>
+            </button> 
+          </div>
+       </Jumbotron>
       </div>
     );
   }
