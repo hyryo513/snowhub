@@ -12,15 +12,15 @@ const Footer = () => (
                         SnowHub is a platform connecting snow lovers with instructors to review and comment on their ski/snowboard videos via Youtube. 
                     </p>
                     <p>
-                        SnowHub only has read-only access to users' YouTube videos and only stors the public video IDs for service purpose.
+                        SnowHub only has read-only access to users' YouTube videos and only stores the public video IDs for service purpose.
                     </p>
                     <p>
                         Please refer to the 
-                        <a href="https://www.termsfeed.com/terms-service/e3d176f3e832ea8775d01253dd290773" target="_blank"> Term of Service </a>
+                        <a href="https://www.termsfeed.com/terms-service/e3d176f3e832ea8775d01253dd290773" target="_blank"> Terms of Service </a>
                          and 
                         <a href="https://www.termsfeed.com/privacy-policy/a398f94bb6129a8c09f6eeb9623361fc" target="_blank"> Privacy Policies </a>
                          for further details. Please 
-                        <a href="henry.heyi513@gmail.com" target="_blank"> Contact Us </a> for any questions.
+                        <a href="henry.heyi513@gmail.com" target="_blank"> Contact Us </a> with any questions.
                     </p>
                 </MDBCol>
             </MDBRow>
