@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button, ButtonToolbar, Form, Jumbotron } from "react-bootstrap";
+import { Modal, Button, ButtonToolbar, Form} from "react-bootstrap";
 import GoogleLogin from 'react-google-login';
 import { MDBInput, MDBContainer, MDBRow, MDBCol, MDBCardHeader, MDBCardBody, MDBCard, MDBIcon } from 'mdbreact';
 import Header from "./Components/Header/Header";
