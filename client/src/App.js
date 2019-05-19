@@ -3,6 +3,7 @@ import {Modal, Button, ButtonToolbar, Form, Jumbotron} from "react-bootstrap";
 import GoogleLogin from 'react-google-login';
 import { MDBInput, MDBContainer, MDBRow, MDBCol,MDBCardHeader, MDBCardBody,MDBCard, MDBIcon } from 'mdbreact';
 import Header from "./Components/Header/Header"
+import Footer from "./Components/Footer/Footer"
 import axios from "axios";
 class App extends Component {
   state ={
@@ -112,7 +113,11 @@ class App extends Component {
                   onSuccess={this.responseGoogle}
                   onFailure={this.responseGoogle}
                   scope="profile email https://www.googleapis.com/auth/youtube.readonly"
-                />
+                /> 
+                By signing in, you agree to the 
+                <a href="https://www.termsfeed.com/terms-service/e3d176f3e832ea8775d01253dd290773" target="_blank">Term of Service</a> 
+                and 
+                <a href="https://www.termsfeed.com/privacy-policy/a398f94bb6129a8c09f6eeb9623361fc" target="_blank">Privacy Policies</a>.
               </Form>
             </Modal.Body>
             <Modal.Footer>
@@ -128,6 +133,7 @@ class App extends Component {
             </button> 
           </div>
        </Jumbotron>
+       <Footer/>
       </div>
     );
   }
