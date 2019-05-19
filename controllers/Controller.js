@@ -1,35 +1,52 @@
 const db = require("../models");
 require("dotenv").config();
 const axios = require("axios");
+var {google} = require('googleapis');
+var service = google.youtube('v3');
 
 var {OAuth2Client} = require("google-auth-library");
 var client = new OAuth2Client(
   process.env.googleClientId
   );
 var clientId = process.env.googleClientId;
+var youtubeApiKey = process.env.youtubeApiKey;
 var userid;
 var userName;
+var youtubeAccessToken;
 
-
+function youtubeAPI (req, res) {
+  axios.interceptors.request.use(function (config) {
+    config.headers.Authorization =  "Bearer " + youtubeAccessToken;
+    return config;
+  });
+  axios.get("https://www.googleapis.com/youtube/v3/search?", {
+    params: {
+      part: "snippet",
+      forMine: true,
+      key: youtubeApiKey,
+      type: "video"
+    }
+  })
+  .then(res => {console.log(res.data.items)})
+  .catch(error => {console.log("error" + error)})
+}
+ 
 async function verify(req, res) {
-  console.log(req.body.idToken);
-  console.log(req.body.role)
   const ticket = await client.verifyIdToken({
       idToken: req.body.idToken,
       audience: clientId,  // Specify the CLIENT_ID of the app that accesses the backend
       // Or, if multiple clients access the backend:
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
   });
-  oAuthToken = req.body.idToken;
+  youtubeAccessToken = req.body.accessToken;
   const payload = ticket.getPayload();
   userid = payload["sub"];
   userName = payload["name"];
   // If request specified a G Suite domain:
   //const domain = payload['hd'];
   createUser(req, res);
-  res.send(true);
+  res.send(true); 
 }
-
 createUser = (req, res) => {
   db.User
   .findOne({googleId: userid})

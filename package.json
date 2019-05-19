@@ -9,8 +9,7 @@
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "seed": "node scripts/seedDB.js",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "build": "cd client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -27,7 +26,12 @@
     "mdbreact": "^4.14.0",
     "mongoose": "^5.3.16",
     "path": "^0.12.7",
+<<<<<<< HEAD
     "react-google-login": "^5.0.4",
     "react-player": "^1.11.0"
+=======
+    "if-env": "^1.0.4",
+    "googleapis": "^40.0.0"
+>>>>>>> 92c1595acff1337c95d3a4be2cf2ffcf883e7fd2
   }
 }

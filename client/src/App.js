@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { Modal, Button, ButtonToolbar, Form} from "react-bootstrap";
 import GoogleLogin from 'react-google-login';
-import { MDBInput, MDBContainer, MDBRow, MDBCol, MDBCardHeader, MDBCardBody, MDBCard, MDBIcon } from 'mdbreact';
-import Header from "./Components/Header/Header";
+
 import Upload from "./Components/Uploadpage/Upload";
+=======
+import { MDBInput, MDBContainer, MDBRow, MDBCol,MDBCardHeader, MDBCardBody,MDBCard, MDBIcon } from 'mdbreact';
+import Header from "./Components/Header/Header"
+import Footer from "./Components/Footer/Footer"
+>>>>>>> 92c1595acff1337c95d3a4be2cf2ffcf883e7fd2
 import axios from "axios";
 class App extends Component {
   state = {
@@ -32,12 +36,20 @@ class App extends Component {
   }
 
   responseGoogle = (response) => {
-    let idToken = response.tokenObj.id_token;
-
+    var accessToken = response.accessToken;
+    var idToken = response.tokenId;
+    console.log(idToken);
     axios.post("/api/tokensignin", {
+<<<<<<< HEAD
       idToken: idToken,
       role: this.state.role
     })
+=======
+        idToken: idToken,
+        role: this.state.role,
+        accessToken: accessToken
+      })
+>>>>>>> 92c1595acff1337c95d3a4be2cf2ffcf883e7fd2
       .then(
         (res) => {
           if (res) {
@@ -112,14 +124,41 @@ class App extends Component {
                     </MDBCol>
                   </MDBRow>
                 </MDBContainer>
+<<<<<<< HEAD
+=======
+                <GoogleLogin
+                  clientId="306631194753-3h405u0u64t43f1vd6dh5udkt0b85cb2.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+                  buttonText="LOGIN WITH GOOGLE"
+                  onSuccess={this.responseGoogle}
+                  onFailure={this.responseGoogle}
+                  scope="profile email https://www.googleapis.com/auth/youtube.readonly"
+                /> 
+                By signing in, you agree to the 
+                <a href="https://www.termsfeed.com/terms-service/e3d176f3e832ea8775d01253dd290773" target="_blank">Term of Service</a> 
+                and 
+                <a href="https://www.termsfeed.com/privacy-policy/a398f94bb6129a8c09f6eeb9623361fc" target="_blank">Privacy Policies</a>.
+>>>>>>> 92c1595acff1337c95d3a4be2cf2ffcf883e7fd2
               </Form>
             </Modal.Body>
             <Modal.Footer>
             </Modal.Footer>
           </Modal>
         </ButtonToolbar>
+<<<<<<< HEAD
         <Upload style={displayUpload}>
         </Upload>
+=======
+        <Jumbotron className="uploader" style={displayUpload}>
+          <div className="input-group">
+            <div className="input-group-prepend"></div>
+            <input type="text" className="form-control" placeholder="Insert your url" aria-label="Username" aria-describedby="basic-addon" />
+            <button className="input-group-text" id="basic-addon">
+              <i className="fa fa-plus-circle"></i>
+            </button> 
+          </div>
+       </Jumbotron>
+       <Footer/>
+>>>>>>> 92c1595acff1337c95d3a4be2cf2ffcf883e7fd2
       </div>
     );
   }
