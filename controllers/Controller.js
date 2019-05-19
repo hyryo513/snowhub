@@ -9,6 +9,7 @@ var client = new OAuth2Client(
   process.env.googleClientId
   );
 var clientId = process.env.googleClientId;
+var youtubeApiKey = process.env.youtubeApiKey;
 var userid;
 var userName;
 
@@ -22,32 +23,27 @@ async function verify(req, res) {
       // Or, if multiple clients access the backend:
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
   });
-  client.setCredentials(req.body.idToken);
+  client.setCredentials(req.body.accessToken);
   const payload = ticket.getPayload();
   userid = payload["sub"];
   userName = payload["name"];
   // If request specified a G Suite domain:
   //const domain = payload['hd'];
   createUser(req, res);
-  service.search.list({
-    auth: client,
-    part: 'snippet',
-    forMine: true,
-    type: "video"
-  }, function(err, response) {
-    if (err) {
-      console.log('The API returned an error: ' + err);
-      return;
-    }
-    var videos = response.data.items;
-    if (videos.length == 0) {
-      console.log('No channel found.');
-    } else {
-      console.log(videos);
-    }
-    res.send(true);
+  axios.interceptors.request.use(function (config) {
+    config.headers.Authorization =  "Bearer " + req.body.accessToken;
+    return config;
   });
-}
+  axios.get("https://www.googleapis.com/youtube/v3/search?", {
+    params: {
+      part: "snippet",
+      forMine: true,
+      key: youtubeApiKey,
+      type: "video"
+    }
+  })
+  .then(res => {console.log(res.data.items)})
+  .catch(error => {console.log("error" + error)})}
 
 createUser = (req, res) => {
   db.User
