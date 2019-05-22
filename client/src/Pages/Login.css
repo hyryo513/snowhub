@@ -144,15 +144,22 @@ h1 {
 }
 
 .container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
     display: -ms-flexbox;
     display: center;
     -ms-flex-wrap: wrap;
     flex-wrap: center;
     -ms-flex-pack: start;
+    align-items: center;
     justify-content: center;
+}
+
+.uploadContainer {
+
+    margin-right: auto;
+    margin-left: auto;
+    display: -ms-flexbox;
+    display: center;
+align-items: center;
+    justify-content: center;
+    align-content: center;
 }
