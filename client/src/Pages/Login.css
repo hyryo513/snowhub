@@ -127,6 +127,7 @@
     flex-wrap: center;
     -ms-flex-pack: start;
     justify-content: center;
+    
 }
 
 h1 {
@@ -140,4 +141,18 @@ h1 {
     mix-blend-mode: overlay;
     font-family: 'Roboto',sans-serif;
     padding: 50px 0 20px 0px;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: -ms-flexbox;
+    display: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: center;
+    -ms-flex-pack: start;
+    justify-content: center;
 }

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Modal, Button, ButtonToolbar, Form} from "react-bootstrap";
 import {GoogleLogin, GoogleLogout} from 'react-google-login';
-import { MDBInput, MDBContainer, MDBRow, MDBCol,MDBCardHeader, MDBCardBody,MDBCard, MDBIcon } from 'mdbreact';
+import { MDBInput, MDBContainer, MDBRow, MDBCol,MDBCardHeader, MDBCardBody,MDBCard,MDBBtn, MDBIcon } from 'mdbreact';
 import Upload from "../Components/Upload/Upload";
 import axios from "axios";
 import "./Login.css"
@@ -83,25 +83,25 @@ class Login extends Component {
     return (
       <div>
         <ButtonToolbar>
-            <Button
-            color="light-blue"
+            <MDBBtn
+            color="primary"
             onClick={this.signInClick}
             style={displaySignIn}
             >
               Sign In
-            </Button>
+            </MDBBtn>
               <GoogleLogout 
               onLogoutSuccess={this.signOutClick}
               buttonText= "Sign Out"
               render={renderProps => (
-                <Button
-                color="light-blue"
+                <MDBBtn
+                color="primary"
                 onClick={renderProps.onClick}
                 disabled={renderProps.disabled}
                 style={displaySignOut}
                 >
                 Sign Out
-                </Button>
+                </MDBBtn>
               )}
               />
             <Modal

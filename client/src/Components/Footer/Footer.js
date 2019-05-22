@@ -12,7 +12,7 @@ const Footer = () => (
                     <p className="paragraphs">
                         SnowHub is a platform connecting snow lovers with instructors to review and comment on their ski/snowboard videos via Youtube. 
                     </p>
-                    <p>
+                    <p className="paragraphs">
                         SnowHub only has read-only access to users' YouTube videos and only stores the public video IDs for service purpose.
                     </p>
                     <p className="paragraphs">
