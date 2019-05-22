@@ -1,6 +1,6 @@
 .header{
 	background-image: url("background.jpg");
-	background-repeat: repeat;
+	background-repeat: no-repeat;
 	background-position: center;
     background-color:whitesmoke;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -18,9 +18,12 @@ h1{
 	font-size: 9vw;
     font-weight: bold;
     position: center;
-    color: gray;
+	color:#fff;
+	text-transform: uppercase;
+	text-shadow: 0 5px 10px rgba(0,0,0,1);
+	mix-blend-mode: overlay;
 	font-family: 'Roboto',sans-serif;
-	padding: 50px 0 20px 0; 
+	padding: 50px 0 20px 0px; 
 }
 
 h2{
@@ -29,6 +32,9 @@ h2{
 	padding-bottom: 40px;
 }
 .btn{
-    background: #3D7EAA;
-    align-content: center;
+	background:lightblue;
+	outline-color: #fff;
+	color: #fff;
+	align-content: center;
+	margin-bottom: 3rem;
 }

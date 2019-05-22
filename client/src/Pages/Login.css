@@ -62,6 +62,24 @@
     padding: 1rem;
     border-radius: .125rem;
     border-radius: .125rem;
+    border-radius: .125rem;
+}
+.form-check-input[type=radio]:checked+label, .form-check-input[type=radio]:not(:checked)+label, label.btn input[type=radio]:checked+label, label.btn input[type=radio]:not(:checked)+label {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    display: inline-block;
+    height: 1.5625rem;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.5625rem;
+    -webkit-transition: .28s ease;
+    transition: .28s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .form-check-input[type=radio]:checked+label, .form-check-input[type=radio]:not(:checked)+label, label.btn input[type=radio]:checked+label, label.btn input[type=radio]:not(:checked)+label {
     position: relative;
@@ -85,18 +103,3 @@
     text-align: center;
 }
 
-.modal-footer {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    padding: 1rem;
-    border-top: 1px solid #eee;
-    text-align: center;
-    align-content: center;
-}
