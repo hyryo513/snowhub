@@ -21,7 +21,7 @@ const Footer = () => (
                          and 
                         <a href="https://www.termsfeed.com/privacy-policy/a398f94bb6129a8c09f6eeb9623361fc" target="_blank" rel="noopener noreferrer"> Privacy Policies </a>
                          for further details. Please 
-                        <a href="henry.heyi513@gmail.com" target="_blank" rel="noopener noreferrer"> Contact Us </a> with any questions.
+                        <a href="mailto: henry.heyi513@gmail.com"> Contact Us </a> with any questions.
                     </p>
                 </MDBCol>
             </MDBRow>
