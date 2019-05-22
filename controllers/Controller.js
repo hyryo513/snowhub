@@ -15,6 +15,7 @@ var userName;
 var youtubeItems = [];
 
 function youtubeAPI (accessToken) {
+  console.log("accessToken " + accessToken)
   axios.interceptors.request.use(function (config) {
     config.headers.Authorization =  "Bearer " + accessToken
     return config;
@@ -108,9 +109,10 @@ module.exports = {
   },
   createComments: function(req, res) {
     db.Video
-      .findByIdAndUpdate({_id: req.params.userGoogleId}, {
+      .findByIdAndUpdate({_id: req.params._id}, {
         commentSummary: req.body.commentSummary,
-        commentDetails: req.body.commentDetails
+        commentDetails: req.body.commentDetails,
+        commentStatus: true
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

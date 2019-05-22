@@ -3,6 +3,7 @@ import {Modal, Button, ButtonToolbar, Form} from "react-bootstrap";
 import {GoogleLogin, GoogleLogout} from 'react-google-login';
 import { MDBInput, MDBContainer, MDBRow, MDBCol,MDBCardHeader, MDBCardBody,MDBCard, MDBIcon } from 'mdbreact';
 import Upload from "../Components/Upload/Upload";
+import Comment from "../Components/Comment/Comment";
 import axios from "axios";
 import "./Login.css"
 class Login extends Component {
@@ -154,6 +155,7 @@ class Login extends Component {
             </Modal>
         </ButtonToolbar>
         {this.state.signIn && (this.state.role === "Normal User") && <Upload googleid={this.state.googleId} />}
+        {this.state.signIn && (this.state.role === "Instructor") && <Comment googleid={this.state.googleId} />}
       </div>
     );
   }

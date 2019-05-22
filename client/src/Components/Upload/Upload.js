@@ -34,8 +34,7 @@ class Upload extends Component {
           .catch(err => console.log(err));
       };
 
-    getYoutubeVideo = event => {
-      event.preventDefault()
+    getYoutubeVideo = ()=> {
         axios.get("/api/youtube")
           .then(
             res => {
@@ -48,7 +47,7 @@ class Upload extends Component {
           .catch(error => {console.log(error)})
     };
 
-    addVideo = videoId => {
+    addVideo = (videoId) => {
       axios.post("/api/video", {
         videoId: videoId,
         userGoogleId: this.props.googleid
@@ -62,7 +61,7 @@ class Upload extends Component {
         }
       )
       .catch(error => {console.log(error)})
-    }
+    };
 
     deleteVideo = _id => {
       axios.delete("/api/video/" + _id)
@@ -72,17 +71,20 @@ class Upload extends Component {
         }
       )
       .catch(error => {console.log(error)})
-    }
+    };
 
     _onReady(event) {
       // access to player in all event handlers via event.target
-      event.target.playVideo();
+      event.target.pauseVideo();
     }
 
     render() {
       const opts = {
         height: '340',
-        width: '560'
+        width: '560',
+        playerVars: {
+          autoplay: 0
+        }
       };       
         return (
             <div {...this.props}>
@@ -125,30 +127,34 @@ class Upload extends Component {
                   {this.state.savedVideos.map(video => (
                     <MDBListGroupItem key={video._id}>
                       <MDBRow>
-                      <YouTube
-                        videoId={video.videoId}
-                        opts={opts}
-                        onReady={this._onReady}
-                      />
-                      </MDBRow>
-                      <MDBRow>
-                        <h4>Comments:</h4>
-                      </MDBRow>
-                      <MDBRow>
-                          {
-                            video.commentStatus ?  
-                            <p>{video.commentSummary}</p>
-                            :
-                            <p>No comments yet.</p>
-                          }
-                      </MDBRow>
-                      <MDBRow>
-                          {
-                            video.commentStatus ?  
-                            <p>{video.commentDetails}</p>
-                            :
-                            null
-                          }
+                        <MDBCol>
+                          <YouTube
+                          videoId={video.videoId}
+                          opts={opts}
+                          onReady={this._onReady}
+                          />
+                        </MDBCol>
+                        <MDBCol>
+                          <MDBRow>
+                          <h4>Comments:</h4>
+                          </MDBRow>
+                          <MDBRow>
+                            {
+                              video.commentStatus ?  
+                              <p>{video.commentSummary}</p>
+                              :
+                              <p>No comments yet.</p>
+                            }
+                          </MDBRow>
+                          <MDBRow>
+                            {
+                              video.commentStatus ?  
+                              <p>{video.commentDetails}</p>
+                              :
+                              null
+                            }
+                          </MDBRow>
+                        </MDBCol>
                       </MDBRow>
                       <MDBRow>
                           <MDBBtn variant="info" type="delete" size="sm" onClick={() => this.deleteVideo(video._id)}>
