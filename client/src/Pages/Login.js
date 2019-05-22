@@ -45,12 +45,13 @@ class Login extends Component {
     }
 
   responseGoogle = (response) => {
-    var accessToken = response.accessToken;
-    var idToken = response.tokenId;
+    console.log(response);
+    var code = response.code;
+    //var idToken = response.tokenId;
     axios.post("/api/tokensignin", {
-        idToken: idToken,
-        role: this.state.role,
-        accessToken: accessToken
+        code: code,
+        role: this.state.role
+        //accessToken: accessToken
       })
       .then(
         (res) => {
@@ -136,6 +137,8 @@ class Login extends Component {
                   onSuccess={this.responseGoogle}
                   onFailure={this.responseGoogle}
                   scope="profile email https://www.googleapis.com/auth/youtube.readonly"
+                  accessType="offline"
+                  responseType="code"
                 /> 
                         </MDBCardBody>
                       </MDBCard>

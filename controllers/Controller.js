@@ -1,22 +1,27 @@
 const db = require("../models");
 require("dotenv").config();
 const axios = require("axios");
-var {google} = require('googleapis');
-var service = google.youtube('v3');
 
 var {OAuth2Client} = require("google-auth-library");
 var client = new OAuth2Client(
-  process.env.googleClientId
+  process.env.googleClientId,
+  process.env.googleClientSecret,
+  process.env.googleRedirect_Uri
   );
 var clientId = process.env.googleClientId;
 var youtubeApiKey = process.env.youtubeApiKey;
 var userid;
 var userName;
+var userRole;
 var youtubeItems = [];
+let axiosInterceptor = null;
 
 function youtubeAPI (accessToken) {
-  axios.interceptors.request.use(function (config) {
-    config.headers.Authorization =  "Bearer " + accessToken
+  if (!!axiosInterceptor || axiosInterceptor === 0) {
+    axios.interceptors.request.eject(axiosInterceptor);
+  };
+  axiosInterceptor = axios.interceptors.request.use(function (config) {
+    config.headers.Authorization =  "Bearer " + accessToken;
     return config;
   });
   axios.get("https://www.googleapis.com/youtube/v3/search?", {
@@ -28,32 +33,35 @@ function youtubeAPI (accessToken) {
     }
   })
   .then(res => {
+    console.log("here");
+    youtubeItems = [];
     youtubeItems = res.data.items;
     })
   .catch(error => {console.log(error)})
-}
+};
  
 async function verify(req, res) {
+
+  const code = req.body.code
+  const verifiedToken = await client.getToken({code: code});
+  console.log(verifiedToken); 
   const ticket = await client.verifyIdToken({
-      idToken: req.body.idToken,
-      audience: clientId,  // Specify the CLIENT_ID of the app that accesses the backend
-      // Or, if multiple clients access the backend:
-      //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+      idToken: verifiedToken.tokens.id_token,
+      audience: clientId
   });
   const payload = ticket.getPayload();
   userid = payload["sub"];
   userName = payload["name"];
-  // If request specified a G Suite domain:
-  //const domain = payload['hd'];
-  createUser(req, res);
+  userRole = req.body.role;
+  if (userRole === "Normal User") {
+    await youtubeAPI(verifiedToken.tokens.access_token);
+  }
+  await createUser(req, res);
   res.send({
     result: true,
     googleId: userid
   });
-  if (req.body.role === "Normal User") {
-    youtubeAPI(req.body.accessToken)
-  }
-}
+};
 createUser = (req, res) => {
   db.User
   .findOne({userGoogleId: userid})
