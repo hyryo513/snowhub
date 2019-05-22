@@ -87,8 +87,8 @@ class Upload extends Component {
         return (
             <div {...this.props}>
                 
-                <MDBContainer>
-        <MDBBtn color="primary" onClick={this.getYoutubeVideo}><i className="fa fa-upload"></i></MDBBtn>
+                <MDBContainer className="uploadContainer">
+        <MDBBtn color="primary" onClick={this.getYoutubeVideo}>Upload &nbsp; <i className="fa fa-upload"></i></MDBBtn>
         <MDBModal isOpen={this.state.modal14} toggle={this.toggle(14)} centered>
           <MDBModalHeader toggle={this.toggle(14)}>Choose your videos</MDBModalHeader>
           <MDBModalBody style={{'maxHeight': 'calc(100vh - 210px)', 'overflowY': 'auto'}}>

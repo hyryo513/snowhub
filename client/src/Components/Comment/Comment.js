@@ -3,7 +3,7 @@ import {MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader,
   MDBListGroup, MDBListGroupItem, MDBRow, MDBCol, MDBInput} from "mdbreact";
 import YouTube from "react-youtube";
 import axios from "axios";
-
+import "./Comment.css";
 class Upload extends Component {
   
   state = {
@@ -88,7 +88,7 @@ class Upload extends Component {
         return (
             <div {...this.props}>
                 
-            <MDBContainer>
+            <MDBContainer className="commentContainer">
             {
               (this.state.savedVideos.length !== 0) &&
               (

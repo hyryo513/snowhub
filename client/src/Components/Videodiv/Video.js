@@ -70,12 +70,6 @@ class Video extends Component {
                     <strong>Comments</strong>
                 </h3>
                 <p>
-                    Nam libero tempore, cum soluta nobis est eligendi optio cumque
-                    nihil impedit quo minus id quod maxime placeat facere possimus,
-                    omnis voluptas assumenda est, omnis dolor repellendus et aut
-                    officiis debitis....
-      </p>
-                <p>
                     by
                         <strong>Carine Fox</strong>
                     , 05/08/2019
