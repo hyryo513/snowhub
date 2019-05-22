@@ -131,25 +131,25 @@ class Login extends Component {
                             id="radio1" />
                           <MDBInput onClick={() => this.radioOnClick(2)} checked={this.state.radio===2 ? true : false} label="Instructor" type="radio"
                             id="radio1" />
-                        </MDBCardBody>
-                      </MDBCard>
-                    </MDBCol>
-                  </MDBRow>
-                </MDBContainer>
-                <GoogleLogin
+                             <GoogleLogin
                   clientId="306631194753-3h405u0u64t43f1vd6dh5udkt0b85cb2.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
                   buttonText="LOGIN WITH GOOGLE"
                   onSuccess={this.responseGoogle}
                   onFailure={this.responseGoogle}
                   scope="profile email https://www.googleapis.com/auth/youtube.readonly"
                 /> 
-                By signing in, you agree to the 
-                <a href="https://www.termsfeed.com/terms-service/e3d176f3e832ea8775d01253dd290773" target="_blank" rel="noopener noreferrer"> Term of Service </a> 
-                and 
-                <a href="https://www.termsfeed.com/privacy-policy/a398f94bb6129a8c09f6eeb9623361fc" target="_blank" rel="noopener noreferrer"> Privacy Policies </a>.
+                        </MDBCardBody>
+                      </MDBCard>
+                    </MDBCol>
+                  </MDBRow>
+                </MDBContainer>
               </Form>
             </Modal.Body>
             <Modal.Footer className="modal-footer">
+           <p className="modal-footer">By signing in, you agree to the &nbsp;
+                <a href="https://www.termsfeed.com/terms-service/e3d176f3e832ea8775d01253dd290773" target="_blank" rel="noopener noreferrer"> Terms of Service </a>
+                &nbsp; and &nbsp;
+                <a href="https://www.termsfeed.com/privacy-policy/a398f94bb6129a8c09f6eeb9623361fc" target="_blank" rel="noopener noreferrer"> Privacy Policies </a>.</p>
             </Modal.Footer>
             </Modal>
         </ButtonToolbar>
