@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 // This is similar to a Sequelize model
 var UserSchema = new Schema({
   // `title` is required and of type String
-  googleId: {
+  userGoogleId: {
     type: String,
     required: true,
     unique: true

@@ -11,18 +11,20 @@ var VideoSchema = new Schema({
       type: String,
       required: true
   },
-  url: {
+  videoId: {
       type: String,
       required: true,
       unique: true
   },
   commentSummary: {
-      type: String
+      type: String,
+      default: ""
   },
   commentDetails: {
-      type: String
+      type: String,
+      default: ""
   },
-  commmentStatus: {
+  commentStatus: {
       type: Boolean,
       default: false
   },

@@ -12,11 +12,11 @@ var clientId = process.env.googleClientId;
 var youtubeApiKey = process.env.youtubeApiKey;
 var userid;
 var userName;
-var youtubeAccessToken;
+var youtubeItems = [];
 
-function youtubeAPI (req, res) {
+function youtubeAPI (accessToken) {
   axios.interceptors.request.use(function (config) {
-    config.headers.Authorization =  "Bearer " + youtubeAccessToken;
+    config.headers.Authorization =  "Bearer " + accessToken
     return config;
   });
   axios.get("https://www.googleapis.com/youtube/v3/search?", {
@@ -27,8 +27,11 @@ function youtubeAPI (req, res) {
       type: "video"
     }
   })
-  .then(res => {console.log(res.data.items)})
-  .catch(error => {console.log("error" + error)})
+  .then(res => {
+    youtubeItems = res.data.items;
+    console.log(youtubeItems);
+    })
+  .catch(error => {console.log("error A" + error)})
 }
  
 async function verify(req, res) {
@@ -38,23 +41,28 @@ async function verify(req, res) {
       // Or, if multiple clients access the backend:
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
   });
-  youtubeAccessToken = req.body.accessToken;
   const payload = ticket.getPayload();
   userid = payload["sub"];
   userName = payload["name"];
   // If request specified a G Suite domain:
   //const domain = payload['hd'];
   createUser(req, res);
-  res.send(true); 
+  res.send({
+    result: true,
+    googleId: userid
+  });
+  if (req.body.role === "Normal User") {
+    youtubeAPI(req.body.accessToken)
+  }
 }
 createUser = (req, res) => {
   db.User
-  .findOne({googleId: userid})
+  .findOne({userGoogleId: userid})
   .then(dbModel => {
     if (dbModel === null) {
       db.User
         .create({
-          googleId: userid,
+          userGoogleId: userid,
           role: req.body.role,
           name: userName
         })
@@ -79,8 +87,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   createVideos: function(req, res) {
-    let youtubeUrl = "<iframe width='420' height='315' src=" + req.body.url + "></iframe>";
-    req.body.url = youtubeUrl;
     db.Video
       .create(req.body)
       .then(dbModel => res.json(dbModel))
@@ -102,11 +108,14 @@ module.exports = {
   },
   createComments: function(req, res) {
     db.Video
-      .findByIdAndUpdate({_id: req.params.googleId}, {
+      .findByIdAndUpdate({_id: req.params.userGoogleId}, {
         commentSummary: req.body.commentSummary,
         commentDetails: req.body.commentDetails
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  findYoutubeVideo: function(req, res) {
+    res.send(youtubeItems)
   }
 };
