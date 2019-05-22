@@ -78,8 +78,8 @@ class Upload extends Component {
 
     render() {
       const opts = {
-        height: '340',
-        width: '560',
+        height: '270',
+        width: '480',
         playerVars: {
           autoplay: 0
         }

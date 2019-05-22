@@ -33,7 +33,6 @@ function youtubeAPI (accessToken) {
     }
   })
   .then(res => {
-    console.log("here");
     youtubeItems = [];
     youtubeItems = res.data.items;
     })
@@ -44,7 +43,6 @@ async function verify(req, res) {
 
   const code = req.body.code
   const verifiedToken = await client.getToken({code: code});
-  console.log(verifiedToken); 
   const ticket = await client.verifyIdToken({
       idToken: verifiedToken.tokens.id_token,
       audience: clientId

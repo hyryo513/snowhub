@@ -45,7 +45,6 @@ class Login extends Component {
     }
 
   responseGoogle = (response) => {
-    console.log(response);
     var code = response.code;
     //var idToken = response.tokenId;
     axios.post("/api/tokensignin", {
