@@ -15,7 +15,6 @@ var userName;
 var youtubeItems = [];
 
 function youtubeAPI (accessToken) {
-  console.log("accessToken " + accessToken)
   axios.interceptors.request.use(function (config) {
     config.headers.Authorization =  "Bearer " + accessToken
     return config;
@@ -30,9 +29,8 @@ function youtubeAPI (accessToken) {
   })
   .then(res => {
     youtubeItems = res.data.items;
-    console.log(youtubeItems);
     })
-  .catch(error => {console.log("error A" + error)})
+  .catch(error => {console.log(error)})
 }
  
 async function verify(req, res) {

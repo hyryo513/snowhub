@@ -15,9 +15,7 @@ class Upload extends Component {
       }
 
       componentDidMount() {
-        setTimeout(() => {
           this.loadVideos()
-        }, 1000)
       };
 
       toggle = nr => () => {

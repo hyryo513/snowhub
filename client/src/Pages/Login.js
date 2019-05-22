@@ -47,7 +47,6 @@ class Login extends Component {
   responseGoogle = (response) => {
     var accessToken = response.accessToken;
     var idToken = response.tokenId;
-    console.log(response.accessToken);
     axios.post("/api/tokensignin", {
         idToken: idToken,
         role: this.state.role,
@@ -55,7 +54,6 @@ class Login extends Component {
       })
       .then(
         (res) => {
-            console.log(res)
           if (res.data.result) {
             this.setState({
               signIn: true,
