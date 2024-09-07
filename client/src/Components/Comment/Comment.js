@@ -104,7 +104,7 @@ class Upload extends Component {
                         />
                         </MDBCol>
                         <MDBCol>
-                          <MDBBtn variant="info" type="open" size="sm" onClick={() => this.openModal(video._id)}>
+                          <MDBBtn className="comment" variant="info" type="open" size="sm" onClick={() => this.openModal(video._id)}>
                             Add Comment
                           </MDBBtn>
                         </MDBCol>
