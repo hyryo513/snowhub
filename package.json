@@ -25,7 +25,7 @@
     "googleapis": "^40.0.0",
     "if-env": "^1.0.4",
     "mdbreact": "^4.14.0",
-    "mongoose": "^5.3.16",
+    "mongoose": "^5.7.5",
     "path": "^0.12.7"
   }
 }
